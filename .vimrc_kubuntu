@@ -1,0 +1,127 @@
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/seoul256.vim'
+Plug 'posva/vim-vue'
+Plug 'arcticicestudio/nord-vim'
+Plug 'rust-lang/rust.vim'
+Plug 'bkad/CamelCaseMotion'
+Plug 'racer-rust/vim-racer'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'fatih/vim-go'
+call plug#end()
+
+" split nav w/ dvorak
+nnoremap <Esc>k <C-W><C-h>
+nnoremap <Esc>n <C-W><C-j>
+nnoremap <Esc>e <C-W><C-k>
+nnoremap <Esc>i <C-W><C-l>
+" window height / width
+nnoremap <Esc>+ <C-W>+
+nnoremap <Esc>- <C-W>-
+nnoremap <Esc>< <C-W><
+nnoremap <Esc>> <C-W>>
+" equivalent chars w/o shift / layers
+nnoremap <Esc>w <C-W>+
+nnoremap <Esc>t <C-W>-
+nnoremap <Esc>, <C-W><
+nnoremap <Esc>. <C-W>>
+
+syntax on
+
+set splitbelow
+set splitright
+
+set ttimeoutlen=100
+
+" zettel 
+" command Zid :let @z=strcharpart(sha256(localtime()), -1, 8)
+command Zid :let @z=system('go run ./helpers/generate_id')
+map <F2> :Zid<CR>a[[<c-r>z]]<esc>:sp <c-r>z.md<CR>i# 
+map <F3> :Zid<CR>a[[<c-r>z]]<esc>:vs <c-r>z.md<CR>i# 
+map g<F2> :Zid<CR>:sp <c-r>z.md<CR>i# 
+map g<F3> :Zid<CR>:vs <c-r>z.md<CR>i# 
+map gz yiw:sp <c-r>".md<CR>
+map g<Esc>z :Zid<CR>:e <c-r>z.md<CR>i# 
+map <Esc>z :let @z="<c-r>%<BS><BS><BS>"<CR>:echo "id copied to z"<CR>
+
+command! -nargs=1 Zfind new|setlocal buftype=nofile noswapfile nobuflisted bufhidden=wipe nobuflisted|read ! grep -i -l "<args>" *.md | ruby ./helpers/note_titles.rb 2
+
+" there must be a better way than echo
+command! -nargs=1 Zzfind echo system('grep -l -i "<args>" *.md | ruby ./helpers/note_titles.rb 2')
+
+" reload vimrc
+nnoremap <F5> <esc>:so ~/.vimrc<CR>
+
+" split navigations w/ Ctrl + hjkl
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+
+" map ctrl arrows?
+nnoremap <Esc>[1;5D b
+nnoremap <Esc>[1;5C w
+imap <Esc>[1;5D <C-o>b
+imap <Esc>[1;5C <C-o>w
+cmap <Esc>[1;5D <Esc>[1;2D
+cmap <Esc>[1;5C <Esc>[1;2C
+
+" color scheme
+" colorscheme seoul256
+"colorscheme nord
+" set background=dark
+
+" name the window w/ the filename first
+set title 
+
+" allow changing buffers w/o saving
+set hidden
+
+" show tabs as >---
+set listchars=tab:>-
+set list
+
+" map wheel to scroll vim (doesn't work)
+" map <ScrollWheelUp> <C-Y>
+" map <ScrollWheelDown> <C-E>
+" set ttymouse=xterm2
+"
+let g:camelcasemotion_key = '<leader>'
+map <C-p> :NERDTreeToggle<CR>
+
+" enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" enable numbering
+set nu
+highlight LineNr ctermfg=DarkGrey
+set hlsearch
+hi Search guibg=LightBlue
+
+" white sp saces
+" insert 4 spaces for tabs, try to do it cleverly
+set tabstop=4
+set expandtab
+set autoindent
+set smartindent
+set smarttab
+set softtabstop=4
+set shiftwidth=4
+
+set linebreak 
+set wrap
+set showbreak=....
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent | 
+    \ set fileformat=unix
+au BufNewFile,BufRead *.css, *.scss, *.js, *.vue, *.html, *.ts;
+	\ set tabstop=2 | 
+	\ set softtabstop=2 | 
+	\ set shiftwidth=2 
