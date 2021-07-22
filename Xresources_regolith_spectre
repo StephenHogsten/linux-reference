@@ -1,0 +1,62 @@
+i3-wm.gaps.focus_follows_mouse:	yes
+
+i3-wm.binding.browser: Ctrl+Return
+
+i3-wm.workspace.02.name: 2Code
+i3-wm.workspace.04.name: 4Slack
+i3-wm.workspace.05.name: 5Zett
+
+! qwerty
+i3-wm.binding.left:	h
+i3-wm.binding.down:	j
+i3-wm.binding.up:	k
+i3-wm.binding.right:	l
+i3-wm.binding.move_left:	Shift+h
+i3-wm.binding.move_down:	Shift+j
+i3-wm.binding.move_up:		Shift+k
+i3-wm.binding.move_right:	Shift+l
+i3-wm.binding.take_left: Ctrl+Shift+h
+i3-wm.binding.take_down: Ctrl+Shift+j
+i3-wm.binding.take_up: Ctrl+Shift+k
+i3-wm.binding.take_right: Ctrl+Shift+l
+
+! colemak
+! i3-wm.binding.left:	k
+! i3-wm.binding.down:	n
+! i3-wm.binding.up:	e
+! i3-wm.binding.right:	i
+! i3-wm.binding.move_left:	Shift+k
+! i3-wm.binding.move_down:	Shift+n
+! i3-wm.binding.move_up:		Shift+e
+! i3-wm.binding.move_right:	Shift+i
+! i3-wm.binding.take_left: Ctrl+Shift+k
+! i3-wm.binding.take_down: Ctrl+Shift+n
+! i3-wm.binding.take_up: Ctrl+Shift+e
+! i3-wm.binding.take_right: Ctrl+Shift+i
+
+i3-wm.binding.ws_next:	Next
+i3-wm.binding.ws_prev: 	Prior
+
+! i3-wm.workspace.auto_back_and_forth:	yes
+i3-wm.binding.back_and_forth:	Tab
+
+i3-wm.gaps.inner.size:	10
+
+! i3-wm.binding.split_h: h
+i3-wm.binding.split_h: g
+i3-wm.binding.fullscreen_toggle: F11
+i3-wm.binding.focus_toggle: f
+
+i3-wm.binding.move_scratchpad: minus
+i3-wm.binding.scratchpad: equal
+
+i3-wm.binding.inc_gaps: Mod1+plus
+i3-wm.binding.dec_gaps: Mod1+minus
+
+i3-wm.binding.notification_ui: 	Mod1+n
+i3-wm.binding.bar_toggle:	Mod1+b	
+i3-wm.binding.logout:		Mod1+l
+i3-wm.binding.files:		Mod1+e
+i3-wm.binding.look_selector:	Mod1+Shift+l
+
+i3-wm.bar.font:	pango:Ubuntu Mono 11
